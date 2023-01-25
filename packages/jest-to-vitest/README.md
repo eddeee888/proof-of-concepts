@@ -1,11 +1,7 @@
-# jest-to-vitest
+# @eddeee888/poc-jest-to-vitest
 
-This library was generated with [Nx](https://nx.dev).
+Migration script to convert Jest to Vitest
 
-## Running unit tests
-
-Run `nx test jest-to-vitest` to execute the unit tests via [Jest](https://jestjs.io).
-
-## Running lint
-
-Run `nx lint jest-to-vitest` to execute the lint via [ESLint](https://eslint.org/).
+```bash
+$ npx jest2vitest "**/*.spec.ts*"
+```

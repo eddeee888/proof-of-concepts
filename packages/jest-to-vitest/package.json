@@ -1,4 +1,14 @@
 {
   "name": "@eddeee888/poc-jest-to-vitest",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "description": "Migrate from Jest to Vitest (mostly)",
+  "author": "Eddy Nguyen <ch@eddeee888.me>",
+  "license": "MIT",
+  "bin": {
+    "jest2vitest": "./src/bin.js"
+  },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "ts-morph": "^17.0.0"
+  }
 }
