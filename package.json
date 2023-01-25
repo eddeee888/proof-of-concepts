@@ -7,6 +7,7 @@
   "dependencies": {},
   "devDependencies": {
     "@nrwl/js": "15.6.2",
+    "@nrwl/node": "15.6.2",
     "@nrwl/workspace": "15.6.2",
     "nx": "15.6.2",
     "prettier": "^2.6.2",
