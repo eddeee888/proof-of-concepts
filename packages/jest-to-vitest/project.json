@@ -35,6 +35,12 @@
           "codeCoverage": true
         }
       }
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "packages/jest-to-vitest/e2e/scripts/e2e.sh"
+      }
     }
   },
   "tags": []
