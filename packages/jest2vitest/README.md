@@ -1,4 +1,4 @@
-# @eddeee888/poc-jest-to-vitest
+# jest2vitest
 
 Migration script to convert Jest to Vitest
 

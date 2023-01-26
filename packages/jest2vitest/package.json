@@ -1,6 +1,6 @@
 {
-  "name": "@eddeee888/poc-jest-to-vitest",
-  "version": "0.0.1",
+  "name": "jest2vitest",
+  "version": "0.0.0",
   "description": "Migrate from Jest to Vitest (mostly)",
   "author": "Eddy Nguyen <ch@eddeee888.me>",
   "license": "MIT",

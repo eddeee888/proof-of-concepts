@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@eddeee888/poc-jest-to-vitest": ["packages/jest-to-vitest/src/index.ts"]
+      "jest2vitest": ["packages/jest2vitest/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
