@@ -13,7 +13,7 @@ jobs:
     name: Check jobs to run
     runs-on: ubuntu-22.04
     outputs:
-      affected-jest-to-vitest: ${{ steps.affected.outputs.jest-to-vitest }}
+      affected-jest2vitest: ${{ steps.affected.outputs.jest2vitest }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -33,13 +33,13 @@ jobs:
       - name: Check affected projects
         id: affected
         run: |
-          echo "::set-output name=jest-to-vitest::$(./ops/bin/check-affected.sh libs jest-to-vitest origin/master)"
+          echo "::set-output name=jest2vitest::$(./ops/bin/check-affected.sh libs jest2vitest origin/master)"
 
-  jest-to-vitest:
+  jest2vitest:
     name:
     runs-on: ubuntu-22.04
     needs: precheck
-    if: ${{ needs.precheck.outputs.affected-jest-to-vitest == 'true' }}
+    if: ${{ needs.precheck.outputs.affected-jest2vitest == 'true' }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -55,10 +55,10 @@ jobs:
         run: yarn install --prefer-offline
 
       - name: Lint
-        run: yarn nx lint jest-to-vitest
+        run: yarn nx lint jest2vitest
 
       - name: Test
-        run: yarn nx test jest-to-vitest
+        run: yarn nx test jest2vitest
 
       - name: Build
-        run: yarn nx build jest-to-vitest
+        run: yarn nx build jest2vitest
