@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+env:
+  node-version: '16.x'
+
+jobs:
+  precheck:
+    name: Check jobs to run
+    runs-on: ubuntu-22.04
+    outputs:
+      affected-jest-to-vitest: ${{ steps.affected.outputs.jest-to-vitest }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node-version }}
+          cache: yarn
+          cache-dependency-path: '**/yarn.lock'
+
+      - name: Install deps
+        run: yarn install --prefer-offline
+
+      - name: Check affected projects
+        id: affected
+        run: |
+          echo "::set-output name=jest-to-vitest::$(./ops/bin/check-affected.sh libs jest-to-vitest origin/master)"
+
+  jest-to-vitest:
+    name:
+    runs-on: ubuntu-22.04
+    needs: precheck
+    if: ${{ needs.precheck.outputs.affected-jest-to-vitest == 'true' }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node-version }}
+          cache: yarn
+          cache-dependency-path: '**/yarn.lock'
+
+      - name: Install deps
+        run: yarn install --prefer-offline
+
+      - name: Lint
+        run: yarn nx lint jest-to-vitest
+
+      - name: Test
+        run: yarn nx test jest-to-vitest
+
+      - name: Build
+        run: yarn nx build jest-to-vitest

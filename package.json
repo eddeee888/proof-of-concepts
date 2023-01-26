@@ -2,12 +2,15 @@
   "name": "proof-of-concepts",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "release": "yarn nx run-many --target=build --all && yarn changeset publish"
+  },
   "private": true,
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@changesets/cli": "2.26.0",
     "@nrwl/eslint-plugin-nx": "15.6.2",
     "@nrwl/jest": "15.6.2",
     "@nrwl/js": "15.6.2",
