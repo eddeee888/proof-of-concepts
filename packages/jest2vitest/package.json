@@ -1,14 +1,14 @@
 {
   "name": "jest2vitest",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Migrate from Jest to Vitest (mostly)",
   "author": "Eddy Nguyen <ch@eddeee888.me>",
   "license": "MIT",
-  "homepage": "https://github.com/eddeee888/proof-of-concepts/blob/master/packages/jest-to-vitest/README.md",
+  "homepage": "https://github.com/eddeee888/proof-of-concepts/blob/master/packages/jest2vitest/README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/eddeee888/proof-of-concepts.git",
-    "directory": "packages/jest-to-vitest"
+    "directory": "packages/jest2vitest"
   },
   "bin": {
     "jest2vitest": "./src/bin.js"
@@ -18,6 +18,6 @@
     "ts-morph": "^17.0.0"
   },
   "publishConfig": {
-    "directory": "../../dist/packages/jest-to-vitest"
+    "directory": "../../dist/packages/jest2vitest"
   }
 }
