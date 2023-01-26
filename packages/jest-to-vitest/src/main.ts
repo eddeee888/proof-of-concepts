@@ -4,6 +4,10 @@ const testBasicImports: Record<string, true> = {
   describe: true,
   it: true,
   expect: true,
+  beforeEach: true,
+  beforeAll: true,
+  afterEach: true,
+  afterAll: true,
 };
 
 export const main = async (filePattern: string): Promise<void> => {
