@@ -1,0 +1,47 @@
+{
+  "name": "jest-to-vitest",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/jest-to-vitest/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/jest-to-vitest",
+        "tsConfig": "packages/jest-to-vitest/tsconfig.lib.json",
+        "packageJson": "packages/jest-to-vitest/package.json",
+        "main": "packages/jest-to-vitest/src/index.ts",
+        "assets": ["packages/jest-to-vitest/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/jest-to-vitest/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "packages/jest-to-vitest/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "packages/jest-to-vitest/e2e/scripts/e2e.sh"
+      }
+    }
+  },
+  "tags": []
+}
