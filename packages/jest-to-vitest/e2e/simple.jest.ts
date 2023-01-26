@@ -1,10 +1,18 @@
 const add = (a: number, b: number): number => a + b;
 
 const mock = jest.fn();
-const mock2 = jest.fn().mockImplementation();
 
 describe('add', () => {
+  beforeEach(() => {
+    console.log('beforeEach');
+  });
+
+  beforeAll(() => {
+    console.log('beforeEach');
+  });
+
   it('returns correct value', () => {
+    const mock2 = jest.fn().mockImplementation();
     expect(add(1, 2)).toBe(3);
   });
 
