@@ -47,7 +47,7 @@ export const main = async (filePattern: string): Promise<void> => {
           .getNodeProperty('expression')
           .asKind(SyntaxKind.Identifier);
 
-        if (identifier && identifier.getText() === 'jest') {
+        if (identifier && ['jest', 'vi'].includes(identifier.getText())) {
           functionsToImportFromVitestMap['vi'] = true;
           identifier.replaceWithText('vi');
         }
