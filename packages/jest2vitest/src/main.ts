@@ -16,7 +16,7 @@ export const main = async (filePattern: string): Promise<void> => {
   project.addSourceFilesAtPaths(filePattern);
 
   project.getSourceFiles().forEach((sourceFile) => {
-    const functionsToImportFromVitestMap: Record<string, true> = {};
+    const importsFromVitestMap: Record<string, true> = {};
 
     // Clean up all `import {...} from 'vitest'` for idempotency
     sourceFile.getImportDeclarations().forEach((importDeclaration) => {
@@ -35,11 +35,10 @@ export const main = async (filePattern: string): Promise<void> => {
       .forEach((node) => {
         const expressionName = node.getNodeProperty('expression').getText();
         if (testBasicImports[expressionName]) {
-          functionsToImportFromVitestMap[expressionName] = true;
+          importsFromVitestMap[expressionName] = true;
         }
       });
 
-    // Replace jest.something with vi.something
     sourceFile
       .getDescendantsOfKind(SyntaxKind.PropertyAccessExpression)
       .forEach((node) => {
@@ -47,19 +46,31 @@ export const main = async (filePattern: string): Promise<void> => {
           .getNodeProperty('expression')
           .asKind(SyntaxKind.Identifier);
 
+        // Replace jest.something/vi.something with vi.something
         if (identifier && ['jest', 'vi'].includes(identifier.getText())) {
-          functionsToImportFromVitestMap['vi'] = true;
+          importsFromVitestMap['vi'] = true;
           identifier.replaceWithText('vi');
+        }
+
+        // If there's `it.each` or `test.each`, import `it` or `test`
+        switch (node.getText()) {
+          case 'it.each':
+            importsFromVitestMap['it'] = true;
+            break;
+          case 'test.each':
+            importsFromVitestMap['test'] = true;
+            break;
+          default:
+            break;
         }
       });
 
-    const functionsToImportFromVitest = Object.keys(
-      functionsToImportFromVitestMap
-    );
-    if (functionsToImportFromVitest.length > 0) {
+    // Import required functions
+    const importsFromVitest = Object.keys(importsFromVitestMap);
+    if (importsFromVitest.length > 0) {
       sourceFile.insertStatements(
         0,
-        `import { ${functionsToImportFromVitest.join(', ')} } from 'vitest';`
+        `import { ${importsFromVitest.join(', ')} } from 'vitest';`
       );
       sourceFile.saveSync();
     }
