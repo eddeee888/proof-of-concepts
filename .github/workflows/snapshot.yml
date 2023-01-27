@@ -14,7 +14,7 @@ jobs:
   release-check:
     runs-on: ubuntu-22.04
     permissions:
-      issues: read|write
+      issues: write
     outputs:
       triggered: ${{ steps.check.outputs.triggered }}
     steps:
