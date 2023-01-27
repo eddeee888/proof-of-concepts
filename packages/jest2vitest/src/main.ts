@@ -3,6 +3,7 @@ import { Project, SyntaxKind } from 'ts-morph';
 const testBasicImports: Record<string, true> = {
   describe: true,
   it: true,
+  test: true,
   expect: true,
   beforeEach: true,
   beforeAll: true,
