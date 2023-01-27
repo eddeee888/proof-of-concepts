@@ -1,5 +1,11 @@
 # jest2vitest
 
+## 0.0.3
+
+### Patch Changes
+
+- 80f0724: Handle it.each and test.each
+
 ## 0.0.2
 
 ### Patch Changes
