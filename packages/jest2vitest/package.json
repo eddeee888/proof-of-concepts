@@ -1,6 +1,6 @@
 {
   "name": "jest2vitest",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Migrate from Jest to Vitest (mostly)",
   "author": "Eddy Nguyen <ch@eddeee888.me>",
   "license": "MIT",
