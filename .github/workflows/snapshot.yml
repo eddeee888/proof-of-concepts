@@ -14,7 +14,6 @@ jobs:
   release-check:
     runs-on: ubuntu-22.04
     permissions:
-      # contents: write
       pull-requests: write
     outputs:
       triggered: ${{ steps.check.outputs.triggered }}
