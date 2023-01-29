@@ -33,7 +33,7 @@ jobs:
       - name: Check affected projects
         id: affected
         run: |
-          echo "::set-output name=jest2vitest::$(./ops/bin/check-affected.sh libs jest2vitest origin/master)"
+          echo "::set-output name=jest2vitest::$(./tools/ci/bin/check-affected.sh libs jest2vitest origin/master)"
 
   jest2vitest:
     name:
